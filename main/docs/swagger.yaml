@@ -1,0 +1,143 @@
+definitions:
+  main.Client:
+    properties:
+      address:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      pets:
+        items:
+          type: string
+        type: array
+      phone:
+        type: string
+    type: object
+  main.Pet:
+    properties:
+      age:
+        type: integer
+      name:
+        type: string
+      owner:
+        type: string
+      weight:
+        type: number
+    type: object
+info:
+  contact: {}
+paths:
+  /clients:
+    get:
+      description: Retorna a lista de clientes.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Client'
+            type: array
+      summary: Lista os clientes.
+      tags:
+      - Clients
+  /clients/add:
+    post:
+      consumes:
+      - application/json
+      description: Adiciona um novo cliente.
+      parameters:
+      - description: Novo cliente a ser adicionado
+        in: body
+        name: client
+        required: true
+        schema:
+          $ref: '#/definitions/main.Client'
+      responses:
+        "201":
+          description: Cliente adicionado com sucesso
+      summary: Adiciona um novo cliente.
+      tags:
+      - Clients
+  /clients/update/{name}:
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os detalhes de um cliente.
+      parameters:
+      - description: Nome do cliente a ser atualizado
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Detalhes atualizados do cliente
+        in: body
+        name: client
+        required: true
+        schema:
+          $ref: '#/definitions/main.Client'
+      responses:
+        "200":
+          description: Cliente atualizado com sucesso
+      summary: Atualiza os detalhes de um cliente.
+      tags:
+      - Clients
+  /pets:
+    get:
+      description: Retorna a lista de pets.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Pet'
+            type: array
+      summary: Lista os pets.
+      tags:
+      - Pets
+  /pets/add:
+    post:
+      consumes:
+      - application/json
+      description: Adiciona um novo pet.
+      parameters:
+      - description: Novo pet a ser adicionado
+        in: body
+        name: pet
+        required: true
+        schema:
+          $ref: '#/definitions/main.Pet'
+      responses:
+        "201":
+          description: Pet adicionado com sucesso
+      summary: Adiciona um novo pet.
+      tags:
+      - Pets
+  /pets/update/{name}:
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os detalhes de um pet.
+      parameters:
+      - description: Nome do pet a ser atualizado
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Detalhes atualizados do pet
+        in: body
+        name: pet
+        required: true
+        schema:
+          $ref: '#/definitions/main.Pet'
+      responses:
+        "200":
+          description: Pet atualizado com sucesso
+      summary: Atualiza os detalhes de um pet.
+      tags:
+      - Pets
+swagger: "2.0"

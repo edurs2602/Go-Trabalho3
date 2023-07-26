@@ -1,0 +1,6 @@
+.DS_Store
+*.exe
+.idea
+*.dat
+/tarefa-1/main/*.csv
+/tarefa-2/main/*.csv
